@@ -34,18 +34,23 @@ vector<int> DijkstraAlgo(vector<vector<pii>>& graph, int start) {
     return distance;
 }
 //print sorteset time of each cities
-void PrintSortestPathfromSourcetoOther(vector<int> distance,int start) { // distance array, source node
-    int total=0; // calculate sum of time 
+void PrintSortestPathfromSourcetoOther(vector<int> distance,int start) { // distance array, source node 
     for (int i = 0; i < distance.size(); i++) {
         if(start!=i){
         cout<<"City "<<to_string(start)<<" to "<<"City "<<to_string(i)<<" :"<<to_string(distance[i])<<endl;
-        total+=distance[i];
         }
     }
-    cout<<"Avarage time City "<<to_string(start)<<" to other is: "<<to_string(total/5)<<endl; // find average 
-
     cout<<endl;
 }
+// void find avarage time
+void AvarageTime(vector<int> distance, int start){
+    int total=0; // calculate sum of time 
+    for (int i = 0; i < distance.size(); i++) {
+        total+=distance[i];
+        }
+        cout<<"City "<<to_string(start)<<" to other city take avarage time is : "<<to_string(total/5)<<endl;
+}
+
 
 //add values in adj matrix for graph
 void AddAjancenceMatrix(vector<vector<pii>>& graph, int u,int v,int weight){ // graph,from,to, weight of path
@@ -83,6 +88,13 @@ int main(){
     PrintSortestPathfromSourcetoOther(DijkstraAlgo(graph, 4),4);
     // source node is city 5
     cout<<"Source node is City 5"<<endl;
-    PrintSortestPathfromSourcetoOther(DijkstraAlgo(graph, 5),5);
+    PrintSortestPathfromSourcetoOther(DijkstraAlgo(graph, 5),5); 
+    //finding avarage time for each node
+    AvarageTime(DijkstraAlgo(graph, 0),0);
+    AvarageTime(DijkstraAlgo(graph, 1),1);
+    AvarageTime(DijkstraAlgo(graph, 2),2);
+    AvarageTime(DijkstraAlgo(graph, 3),3);
+    AvarageTime(DijkstraAlgo(graph, 4),4);
+    AvarageTime(DijkstraAlgo(graph, 5),5);
     return 0;
 }
